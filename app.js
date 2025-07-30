@@ -1,9 +1,9 @@
 let listaAmigos = [];
 
 function agregarAmigo() {
-
     const nombreAmigo = document.getElementById("amigo").value.trim();
-
+    limpiarCaja()
+    
     if (nombreAmigo === "") {
         alert("El campo no puede estar vacío");
         return;
@@ -34,9 +34,9 @@ function sortearAmigo() {
         alert("La cantidad mínima de amigos para sortear es 2");
         return;
     }
-    let cantiadAmigos = listaAmigos.length;
+    let cantidadAmigos = listaAmigos.length;
 
-    let amigoSorteado = listaAmigos[Math.floor(Math.random() * cantiadAmigos)];
+    let amigoSorteado = listaAmigos[Math.floor(Math.random() * cantidadAmigos)];
     console.log("Amigo sorteado: " + amigoSorteado);
     asignarTextoAElemento("#resultado", "Amigo sorteado: " + amigoSorteado);
 }
@@ -44,4 +44,9 @@ function sortearAmigo() {
 function asignarTextoAElemento(elemento, texto) {
     let elementoHTML = document.querySelector(elemento);
     elementoHTML.innerHTML = texto;
+}
+
+function limpiarCaja() {
+    document.querySelector("#amigo").value = "";
+    document.querySelector("#amigo").focus();
 }
