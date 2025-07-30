@@ -2,17 +2,19 @@ let listaAmigos = [];
 
 function agregarAmigo() {
 
-    if (document.getElementById("amigo").value === "") { // a revisar: como tomar los espacios como vacíos
+    const nombreAmigo = document.getElementById("amigo").value.trim();
+
+    if (nombreAmigo === "") {
         alert("El campo no puede estar vacío");
         return;
     }
 
-    if (listaAmigos.includes(document.getElementById("amigo").value)) {
+    if (listaAmigos.includes(nombreAmigo)) {
         alert("Ya agregaste a este amigo");
         return;
     }
 
-    listaAmigos.push(document.getElementById("amigo").value);
+    listaAmigos.push(nombreAmigo);
     console.log("Amigo: " + listaAmigos[listaAmigos.length - 1] + " agregado a la lista de amigos");
     mostrarAmigos();
 }
@@ -28,6 +30,10 @@ function mostrarAmigos() {
 
 function sortearAmigo() {
     console.log("Clic sobre sortear amigo");
+    if (listaAmigos.length < 2) {
+        alert("La cantidad mínima de amigos para sortear es 2");
+        return;
+    }
     let cantiadAmigos = listaAmigos.length;
 
     let amigoSorteado = listaAmigos[Math.floor(Math.random() * cantiadAmigos)];
