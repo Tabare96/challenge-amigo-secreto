@@ -14,24 +14,28 @@ function agregarAmigo() {
 
     listaAmigos.push(document.getElementById("amigo").value);
     console.log("Amigo: " + listaAmigos[listaAmigos.length - 1] + " agregado a la lista de amigos");
-    asignarTextoElemento("#listaAmigos", listaAmigos);
-}
-
-function asignarTextoElemento(elemento, lista) {
-    let elementoHTML = document.querySelector(elemento);
-    let listaAmigos = "";
-    for (let i = 0; i < lista.length; i++) {
-        listaAmigos += lista[i] + "<br>";
-    }
-    elementoHTML.innerHTML = listaAmigos;
+    mostrarAmigos();
 }
 
 function mostrarAmigos() {
+    let lista = document.getElementById("listaAmigos");
+    lista.innerHTML = "";
+
     for (let i = 0; i < listaAmigos.length; i++) {
-        console.log("Amigo " + (i + 1) + ": " + listaAmigos[i]);
+        lista.innerHTML += "<li>" + listaAmigos[i] + "</li>";
     }
 }
+
 function sortearAmigo() {
-    alert("Clic sobre sortear amigo");
+    console.log("Clic sobre sortear amigo");
+    let cantiadAmigos = listaAmigos.length;
+
+    let amigoSorteado = listaAmigos[Math.floor(Math.random() * cantiadAmigos)];
+    console.log("Amigo sorteado: " + amigoSorteado);
+    asignarTextoAElemento("#resultado", "Amigo sorteado: " + amigoSorteado);
 }
 
+function asignarTextoAElemento(elemento, texto) {
+    let elementoHTML = document.querySelector(elemento);
+    elementoHTML.innerHTML = texto;
+}
